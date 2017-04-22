@@ -1,5 +1,0 @@
-n = int(input())
-l = list(map(int, input().split()))
-l.sort()
-ans = sum([min([l[2*i], l[2*i+1]]) for i in range(n)])
-print(ans)
