@@ -1,54 +1,49 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 
 typedef long long ll;
 
-#define BLACK false
-#define WHITE true
+vector<ll > adj[200000];
+bool memo[200000];
+ll N, M;
+const ll WHITE = 0;
+const ll BLACK = 1;
 
-ll N;
-ll M;
-bool mat[200000][200000], memo[200000];
-
-bool BFS(int depth,  ll tmp){
-    memo[tmp] = BLACK;
+bool DFS(ll depth, ll pos){
+    memo[pos] = BLACK;
     if(depth==2){
-        if(tmp==N-1){
-            return true;
-        }else{
-            return false;
+        if(pos==N-1) return true;
+        else return false;
+    }else{
+        bool flag;
+        flag = false;
+        for(ll i=0; i<adj[pos].size(); i++){
+            if(memo[adj[pos][i]]==WHITE){
+                flag = DFS(depth+1, adj[pos][i]);
+                if(flag) return flag;
+            }
         }
+        return flag;
     }
-    for(ll i=0; i<N; i++){
-        if(mat[tmp][i] && memo[i]){
-            if(BFS(depth+1, i)) return true;
-        }
-    }
-    return false;
 }
 
 int main(){
     cin >> N >> M;
     ll a, b;
     for(ll i=0; i<N; i++){
-        for(ll j=0; j<N; j++){
-            mat[i][j] = false;
-            cout << "hoge" << endl;
-        }
-    }
-    for(ll i=0; i<N; i++){
         memo[i] = WHITE;
     }
-    memo[0] = BLACK;
     for(ll i=0; i<M; i++){
         cin >> a >> b;
-        mat[a-1][b-1] = true;
-        mat[b-1][a-1] = true;
+        a--; b--;
+        adj[a].push_back(b);
+        adj[b].push_back(a);
     }
-    
-    if(BFS(0, 0)){
+    if(DFS(0, 0)){
         cout << "POSSIBLE" << endl;
     }else{
         cout << "IMPOSSIBLE" << endl;
     }
+
 }
