@@ -1,0 +1,9 @@
+#!/usr/bin/env python
+x, y = input().split()
+
+if x<y:
+    print('<')
+elif x>y:
+    print('>')
+else:
+    print('=')
