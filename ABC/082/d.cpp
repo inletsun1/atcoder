@@ -46,14 +46,14 @@ int main(){
         cout << "No" << endl;
         return 0;
     }
-    for(int i=0; i<f.size(); i++){
+    for(int i=0; i<=f.size(); i++){
         for(int j=0; j<=2*sum_f + 1; j++){
             isF[i][j] = false;
         }
     }
     isF[0][sum_f] = true;
 
-    for(int i=0; i<t.size(); i++){
+    for(int i=0; i<=t.size(); i++){
         for(int j=0; j<=2*sum_t + 1; j++){
             isT[i][j] = false;
         }
@@ -67,7 +67,11 @@ int main(){
                 //cout << "-: " << j-f[i-1] << " +:" << j+f[i-1] << endl;
                 isF[i][j] = false;
             }else{
-                isF[i][j] = isF[i-1][j-f[i-1]] || isF[i-1][j+f[i-1]];
+                if(i==1){
+                    isF[i][j] = isF[i-1][j-f[i-1]];
+                }else{
+                    isF[i][j] = isF[i-1][j-f[i-1]] || isF[i-1][j+f[i-1]];
+                }
             }
             /*
             if(isF[i][j]){
