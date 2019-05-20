@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
 #define REP(i, n, m) for(int i = n; i < m; i++)
 #define REPR(i, n, m) for(int i = n; i >= m; i--)
 #define LREP(i, n, m) for(ll i = n; i < m; i++)
@@ -13,6 +12,7 @@ typedef long long ll;
 const int INF = 1e9 + 1;
 const int MOD = 1e9 + 7;
 
+typedef long long ll;
 
 
 //---functions---//
@@ -38,4 +38,14 @@ int main(){
     cout.tie(0);
     ios::sync_with_stdio(false);
 
+    cin >> N;
+    int A[N + 2];
+    A[0] = 0;
+    A[N+1] = 0;
+    REP(i, 1, N + 1) cin >> A[i];
+    int L = 0;
+    REP(i, 1, N + 2) L += abs(A[i] - A[i-1]);
+    REP(i, 1, N + 1){
+        cout << L - (abs(A[i] - A[i-1]) + abs(A[i+1] - A[i]))+ abs(A[i+1] - A[i-1]) << endl;
+    }
 }

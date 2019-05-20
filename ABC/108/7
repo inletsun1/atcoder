@@ -1,0 +1,23 @@
+#include<iostream>
+#include<bitset>
+using namespace std;
+
+int L;
+
+
+void makePaths(int start_edge, int len, int goal_edge){
+    cout << i - 1 << " " << i << " " << 0 << endl;
+    cout << i - 1 << " " << i << " " << 1 << endl;
+}
+
+int main(){
+    cin >> L;
+    int N = 1;
+    int tmp_L = L - 1;
+    while(tmp_L > 0){
+        tmp_L /= 2;
+        N += 1;
+    }
+    cout << bitset<8> (L - 1) << endl;
+    cout << N << endl;
+}

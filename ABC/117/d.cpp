@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
+typedef unsigned long long ll;
 #define REP(i, n, m) for(int i = n; i < m; i++)
 #define REPR(i, n, m) for(int i = n; i >= m; i--)
 #define LREP(i, n, m) for(ll i = n; i < m; i++)
@@ -32,10 +32,33 @@ bool secondCompare(const P& firstElof, const P& secondElof){
 }
 //---------------//
 
-int N;
+ll N;
+ll K;
 int main(){
     cin.tie(0);
     cout.tie(0);
     ios::sync_with_stdio(false);
+
+    cin >> N >> K;
+    ll A[N];
+    LREP(i, 0, N){
+        cin >> A[i];
+    }
+    ll X = 0;
+    ll f = 0;
+    ll tmp;
+    REPR(bit, 40, 0){
+        tmp = 0;
+        LREP(i, 0, N){
+            if(A[i] & (1L << bit)) tmp += 1;
+        }
+        if(K >= X + (1L << bit) && tmp < N - tmp){
+            X += (1L << bit);
+            tmp = N - tmp;
+        }
+        f += (1L << bit) * tmp;
+    }
+
+    cout << f << endl;
 
 }

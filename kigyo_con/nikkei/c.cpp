@@ -7,7 +7,7 @@ typedef long long ll;
 #define LREP(i, n, m) for(ll i = n; i < m; i++)
 #define LREPR(i, n, m) for(ll i = n; i >= m; i--)
 
-#define P pair<int, int >
+#define P pair<ll, ll >
 
 
 const int INF = 1e9 + 1;
@@ -28,14 +28,27 @@ bool firstCompare(const P& firstElof, const P& secondElof){
     return firstElof.first < secondElof.first;
 }
 bool secondCompare(const P& firstElof, const P& secondElof){
-    return firstElof.second < secondElof.second;
+    return firstElof.second > secondElof.second;
 }
 //---------------//
 
-int N;
+ll N;
 int main(){
     cin.tie(0);
     cout.tie(0);
     ios::sync_with_stdio(false);
 
+    cin >> N;
+
+    ll ans = 0;
+    ll C[N];
+    ll A, B;
+    LREP(i, 0, N){
+        cin >> A >> B;
+        ans += - B;
+        C[i] = A + B;
+    }
+    sort(C, C + N, greater<ll >());
+    for(ll i = 0; i < N; i += 2) ans += C[i];
+    cout << ans << endl;
 }

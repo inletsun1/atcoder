@@ -1,18 +1,18 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
 #define REP(i, n, m) for(int i = n; i < m; i++)
 #define REPR(i, n, m) for(int i = n; i >= m; i--)
 #define LREP(i, n, m) for(ll i = n; i < m; i++)
 #define LREPR(i, n, m) for(ll i = n; i >= m; i--)
 
-#define P pair<int, int >
+#define P pair<ll, ll >
 
 
 const int INF = 1e9 + 1;
 const int MOD = 1e9 + 7;
 
+typedef long long ll;
 
 
 //---functions---//
@@ -28,14 +28,25 @@ bool firstCompare(const P& firstElof, const P& secondElof){
     return firstElof.first < secondElof.first;
 }
 bool secondCompare(const P& firstElof, const P& secondElof){
-    return firstElof.second < secondElof.second;
+    return firstElof.second > secondElof.second;
 }
 //---------------//
 
-int N;
+ll N, K;
 int main(){
     cin.tie(0);
     cout.tie(0);
     ios::sync_with_stdio(false);
+
+    cin >> N >> K;
+    vector<P > v(N);
+    vector<int > t(N, 0);
+    REP(i, 0, N) cin >> v[i].first >> v[i].second, t[v[i].first] += 1;
+    sort(v.begin(), v.end(), secondCompare);
+
+    ll ans = 0;
+    REP(i, 0, K){
+        ans += v[i].second;
+    }
 
 }

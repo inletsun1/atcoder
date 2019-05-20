@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
 #define REP(i, n, m) for(int i = n; i < m; i++)
 #define REPR(i, n, m) for(int i = n; i >= m; i--)
 #define LREP(i, n, m) for(ll i = n; i < m; i++)
@@ -13,6 +12,7 @@ typedef long long ll;
 const int INF = 1e9 + 1;
 const int MOD = 1e9 + 7;
 
+typedef long long ll;
 
 
 //---functions---//
@@ -30,12 +30,20 @@ bool firstCompare(const P& firstElof, const P& secondElof){
 bool secondCompare(const P& firstElof, const P& secondElof){
     return firstElof.second < secondElof.second;
 }
+
+ll factorial(ll n){
+    if(n == 0) return 1;
+    else return n * factorial(n-1);
+}
 //---------------//
 
-int N;
+ll N;
+
 int main(){
     cin.tie(0);
     cout.tie(0);
     ios::sync_with_stdio(false);
 
+    cin >> N;
+    cout << factorial(N) << endl;
 }

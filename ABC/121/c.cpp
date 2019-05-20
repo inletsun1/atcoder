@@ -7,7 +7,7 @@ typedef long long ll;
 #define LREP(i, n, m) for(ll i = n; i < m; i++)
 #define LREPR(i, n, m) for(ll i = n; i >= m; i--)
 
-#define P pair<int, int >
+#define P pair<ll, ll >
 
 
 const int INF = 1e9 + 1;
@@ -32,10 +32,31 @@ bool secondCompare(const P& firstElof, const P& secondElof){
 }
 //---------------//
 
-int N;
+ll N, M;
 int main(){
     cin.tie(0);
     cout.tie(0);
     ios::sync_with_stdio(false);
 
+    cin >> N >> M;
+    vector<P > v(N);
+    ll a, b;
+    LREP(i, 0, N){
+        cin >> a >> b;
+        v[i].first = a;
+        v[i].second = b;
+    }
+    sort(v.begin(), v.end(), firstCompare);
+
+    ll ans = 0;
+    LREP(i, 0, N){
+        if(v[i].second < M){
+             M -= v[i].second;
+             ans += v[i].second * v[i].first;
+        }else{
+            ans += M * v[i].first;
+            break;
+        }
+    }
+    cout << ans << endl;
 }

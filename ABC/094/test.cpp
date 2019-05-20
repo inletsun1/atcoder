@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-typedef long long ll;
 #define REP(i, n, m) for(int i = n; i < m; i++)
 #define REPR(i, n, m) for(int i = n; i >= m; i--)
 #define LREP(i, n, m) for(ll i = n; i < m; i++)
@@ -13,6 +12,7 @@ typedef long long ll;
 const int INF = 1e9 + 1;
 const int MOD = 1e9 + 7;
 
+typedef long long ll;
 
 
 //---functions---//

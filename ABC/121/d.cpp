@@ -32,10 +32,42 @@ bool secondCompare(const P& firstElof, const P& secondElof){
 }
 //---------------//
 
-int N;
+ll A, B;
 int main(){
     cin.tie(0);
     cout.tie(0);
     ios::sync_with_stdio(false);
 
+    cin >> A >> B;
+    ll max_len = 0;
+    ll tmp = B;
+    while(tmp > 1){
+        max_len += 1;
+        tmp /= 2;
+    }
+
+    ll ans = 0;
+    ll a, b;
+    ll div, mod;
+    B += 1; 
+    LREP(i, 0, max_len + 1){
+        a = 0;
+        b = 0;
+        div = A / (1L << (i + 1));
+        a = div * (1L << i);
+        mod = A % (1L << (i + 1));
+        if(mod > (1L << i)){
+            a += mod - (1L << i);
+        }
+        div = B / (1L << (i + 1));
+        b = div * (1L << i);
+        mod = B % (1L << (i + 1));
+        if(mod > (1L << i)){
+            b += mod - (1L << i);
+        }
+        if((b - a) % 2 == 1){
+            ans += (1L << i);
+        }
+    }
+    cout << ans << endl;
 }

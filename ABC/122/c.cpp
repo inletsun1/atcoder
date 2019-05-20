@@ -32,10 +32,37 @@ bool secondCompare(const P& firstElof, const P& secondElof){
 }
 //---------------//
 
-int N;
+int N, Q;
 int main(){
     cin.tie(0);
     cout.tie(0);
     ios::sync_with_stdio(false);
 
+    cin >> N >> Q;
+    string S;
+    cin >> S;
+    int l[Q], r[Q], mat[N];
+    REP(i, 0, Q){
+        cin >> l[i] >> r[i];
+        l[i] -= 1;
+        r[i] -= 1;
+    }
+    bool flag = false;
+    if(S[0] == 'A') flag = true;
+    mat[0] = 0;
+    REP(i, 1, N){
+        if(flag && S[i] == 'C'){
+            mat[i] = mat[i-1] + 1;
+            flag = false;
+        }else if(S[i] == 'A'){
+            flag = true;
+            mat[i] = mat[i-1];
+        }else{
+            flag = false;
+            mat[i] = mat[i-1];
+        }
+    }
+    REP(i, 0, Q){
+        cout << mat[r[i]] - mat[l[i]] << endl;
+    }
 }
